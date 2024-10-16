@@ -1,0 +1,19 @@
+- name: testing simple role ori file
+  hosts: localhost
+  vars:
+    public_var: 123
+  tasks:
+    - name: T1
+      debug:
+        msg: Public variable is {{ public_var }}
+
+    - name: T2
+      vars:
+        local_var: abc
+      debug:
+        msg: Local is {{ local_var }}
+
+    - name: T3
+      debug:
+        msg: T3
+

@@ -1,0 +1,9 @@
+- name: testing magic variables
+  hosts: "{{ host_list | default('cisco') }}"
+  gather_facts: true
+  tasks:
+    - name: host
+      debug:
+        msg: "{{ inventory_hostname }} hostname is {{ ansible_facts.net_hostname }}"
+      when: "inventory_hostname not in groups['cisco']"
+

@@ -1,0 +1,14 @@
+- name: testing conditions
+  hosts: cisco
+  vars:
+    value1: 0
+  tasks:
+    - name: T1
+      debug:
+        msg: your doit value is {{ doit }}
+      when:
+        - doit is defined
+
+    - name: T2
+      debug:
+        msg: YES

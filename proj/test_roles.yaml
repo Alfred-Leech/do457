@@ -1,0 +1,7 @@
+- name: testing roles
+  hosts: localhost
+  roles:
+    - role: simple
+      public_var: YAY
+    - role: simple
+      public_var: NAY

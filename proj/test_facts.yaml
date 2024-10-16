@@ -1,0 +1,12 @@
+- name: testing facts
+  hosts: cisco
+  gather_facts: false
+  tasks:
+    - name: collect ios facts
+      ios_facts:
+
+    - name: display info
+      debug:
+        msg:
+          - '{{ ansible_net_hostname }} serial number is {{ ansible_net_serialnum }}'
+          - 'your inventory name is {{ inventory_hostname }}'

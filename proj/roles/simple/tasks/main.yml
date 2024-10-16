@@ -1,0 +1,13 @@
+---
+# tasks file for simple
+- name: T1
+  debug:
+    msg: Public variable is {{ public_var }}
+
+- name: T2
+  debug:
+    msg: Local is {{ local_var }}
+
+- name: T3
+  debug:
+    msg: T3

@@ -1,0 +1,38 @@
+---
+- name: Testing block error handling
+  hosts: localhost
+  tasks:
+    - name: T1
+      debug:
+        msg: Task 1
+
+    - block:
+        - name: T2a
+          debug:
+            msg: Task 2a
+          failed_when: true
+
+        - name: T2b
+          debug:
+            msg: Task 2b
+      rescue:
+        - name: R1
+          debug:
+            msg: Task R1
+
+        - name: R2
+          debug:
+            msg: Task R2
+      always:
+        - name: A1
+          debug:
+            msg: Task A1
+
+        - name: A2
+          debug:
+            msg: Task A2
+
+    - name: T3
+      debug:
+        msg: Task 3
+

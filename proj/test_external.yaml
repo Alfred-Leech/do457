@@ -1,0 +1,22 @@
+- name: testing external
+  hosts: localhost
+  tasks:
+    - name: T1
+      debug:
+        msg: T1
+
+    - name: T2
+      vars:
+        dev_list:
+          - first
+          - second
+          - third
+        net_dev_name: "{{ item }}"
+      include_tasks:
+        file: tasks/external.yaml
+      loop: "{{ dev_list }}"
+
+    - name: T3
+      debug:
+        msg: T3
+

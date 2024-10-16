@@ -1,0 +1,27 @@
+- name: Play to test ios device
+  hosts: cisco
+  gather_facts: true
+  vars:
+    ip_address: 172.25.230.1
+    user_list:
+      - abc
+      - def
+      - ghi
+  vars_files:
+    - vars/data.yaml
+  tasks:
+    - name: get version information {{ ip_address }}
+      ios_command:
+        commands:
+          - show version
+      register: version_result
+
+    - name: Show output
+      vars:
+        ip_address: 2.2.2.2
+      debug:
+        msg: '{{ ip_address }} is your ip address'
+
+    - name: display the result of ios_command
+      debug:
+        var: version_result

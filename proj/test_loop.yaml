@@ -1,0 +1,33 @@
+- name: Testing loops
+  hosts: iosxe1
+  vars:
+    host_list:
+      - name: abc
+        ip: 1.1.1.1
+      - name: def
+        ip: 2.2.2.2
+      - name: ghi
+        ip: 3.3.3.3
+
+    simple_list:
+      - abc
+      - def
+      - ghi
+  tasks:
+    - name: simple loop
+      debug:
+        msg: your data is {{ item }}
+      loop:
+        - abc
+        - def
+        - ghi
+          
+    - name: simple loop with var
+      debug:
+        msg: your data is {{ item }}
+      loop: "{{ simple_list }}"
+          
+    - name: loop through a hash
+      debug:
+        msg: "{{ item.name }} has ip {{ item.ip }}"
+      loop: "{{ host_list }}"

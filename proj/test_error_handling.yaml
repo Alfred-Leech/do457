@@ -1,0 +1,21 @@
+#
+# testing ignore_error vs failed_when
+#
+- name: Testing Error Handling
+  hosts: iosxe1
+  gather_facts: false
+  vars:
+    vlan_id: 1004
+  tasks:
+    - name: Retrieve VLan {{ vlan_id }} info
+      ios_command:
+        commands: show vlan id {{ vlan_id }}
+      register: cmd_result
+      # failed_when: false
+      ignore_errors: true
+
+    - name: Show result
+      debug:
+        msg:
+          - The result of ios_command is
+          - "{{ cmd_result }}"
