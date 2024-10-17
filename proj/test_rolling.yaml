@@ -1,0 +1,15 @@
+- name: testing rolling update
+  hosts: all
+  serial: 2
+  tasks:
+    - name: T1
+      debug:
+        msg: Step 1
+
+    - name: T2
+      debug:
+        msg: Step 2
+
+    - name: T3
+      debug:
+        msg: Step 3

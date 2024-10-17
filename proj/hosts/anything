@@ -1,7 +1,7 @@
 dummy		ansible_host=172.25.250.24 ansible_network_os=eos
 
 [cisco]
-iosxe1
+iosxe1		value1=1
 iosxe2
 
 [juniper]

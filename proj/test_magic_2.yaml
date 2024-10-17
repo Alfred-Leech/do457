@@ -1,0 +1,31 @@
+- name: testing magic var usage
+  hosts: cisco
+  gather_facts: false
+  tasks:
+    - name: Gather ios facts
+      ios_facts:
+        gather_subset:
+          - all
+
+    - name: show {{ node_name }} info
+      vars:
+        node_name: iosxe2
+      debug:
+        msg:
+          - "{{ ansible_facts['net_hostname'] }} with serial {{ ansible_facts['net_serialnum'] }}" 
+          - "{{ hostvars[node_name].ansible_facts.net_hostname }} has serial number {{ hostvars[node_name]['ansible_facts']['net_serialnum'] }}"
+      when: inventory_hostname == 'iosxe1' 
+
+    - name: display hostvars
+      vars:
+        value1: 1
+      debug:
+        msg:
+          - 1 + 1 is {{ 1 + value1 }}
+          - value1 is {% if value1 > 0 %}greater than{% else %}less than{% endif %} zero 
+
+    - name: config switch
+      template:
+        src: source.j2
+        dest: ./somefile-{{ inventory_hostname }}.txt
+      delegate_to: localhost
