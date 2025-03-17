@@ -152,6 +152,7 @@ Command Line Syntax
   Navigator   # DO374
   ---------
       ansible-navigator [--help]
+      ansible-navigator exec CMD
       ansible-navigator run [--hp]
       ansible-navigator doc [-t PLUGIN] -l
       ansible-navigator doc MODULE -m stdout
