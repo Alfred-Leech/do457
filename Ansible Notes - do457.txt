@@ -431,7 +431,8 @@ TIPS:
   Variables
   =========
     boolean & floating point numbers doesn't need to be quoted.
-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
+
+
 GARBAGE:
   roles:
     - role: role1
