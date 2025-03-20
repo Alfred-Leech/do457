@@ -1,0 +1,19 @@
+# 1. using include_vars module
+# 2. when a host fails the task it will not proceed to the next task
+# 3. Intro to condition statements
+# 4. Error handling using ignore_errors
+- name: Testing include_vars module
+  hosts: cisco
+  tasks:
+    - name: Task 1
+      ansible.builtin.debug:
+        msg: value1 is {{ value1 }}
+      ignore_errors: true
+      #when: value1 is defined
+
+    - name: Task 2 - include var file
+      ansible.builtin.include_vars: vars/data.yaml
+
+    - name: Task 3 - guess what is value1?
+      ansible.builtin.debug:
+        var: value1

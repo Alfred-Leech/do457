@@ -1,0 +1,13 @@
+- name: Testing facts
+  hosts: cisco
+  gather_facts: false
+  tasks:
+    - name: collect facts
+      cisco.ios.ios_facts:
+
+    - name: the current host serial
+      debug:
+        msg:
+          - 'inventory name: {{ inventory_hostname }}'
+          - 'serial number: {{ ansible_net_serialnum }}'  #old name
+          - "serial number: {{ ansible_facts['net_serialnum'] }}" # new name

@@ -1,0 +1,8 @@
+- hosts: iosxe2
+  tasks:
+    - ios_command:
+        commands:
+          - show vlan
+      register: res
+
+    - debug: var=res

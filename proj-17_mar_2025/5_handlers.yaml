@@ -1,0 +1,32 @@
+- name: Testing handlers
+  hosts: arista2
+  gather_facts: false
+  become: true
+  vars:
+    mode: delete
+  tasks:
+    - name: Ensure VLAN 100 exists
+      arista.eos.eos_config:
+        lines:
+          - vlan 100
+      when: mode == 'create'
+      register: conf_result
+      notify: Save Configuration
+
+    - name: Remove VLAN 100 if exists (Requires Reboot)
+      arista.eos.eos_config:
+        lines:
+          - no vlan 100
+      when: mode == 'delete'
+      notify: Reboot Switch
+      ignore_errors: true
+
+  handlers:
+    - name: Save Configuration
+      arista.eos.eos_config:
+        save_when: always
+
+    - name: Reboot Switch
+      arista.eos.eos_command:
+        commands: reload now
+

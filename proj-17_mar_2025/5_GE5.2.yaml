@@ -1,0 +1,11 @@
+- name: testing
+  hosts: cisco
+  gather_facts: false
+  tasks:
+    - name: ios gathering facts
+      ios_facts:
+        gather_subset: interfaces
+
+    - name: test it
+      debug:
+        var: interfaces

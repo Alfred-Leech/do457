@@ -1,0 +1,30 @@
+- name: Testing magic variables
+  hosts:
+    - cisco
+    - arista
+  gather_facts: false
+  tasks:
+    - name: Testing inventory hostname
+      debug: msg="{{ inventory_hostname }}"
+
+    - name: Testing group_names 
+      debug:
+        var: group_names
+
+    - name: Testing groups
+      debug:
+        var: groups
+      when: inventory_hostname == 'iosxe1'
+
+    - name: Collect facts from cisco group
+      cisco.ios.ios_facts:
+      when: inventory_hostname in groups['cisco']
+
+    - name: Collect arista facts
+      eos_facts:
+      when: inventory_hostname in groups['arista']
+
+    - name: Testing hostvars
+      debug:
+        msg: Arista2 hostname is {{ hostvars['arista2']['ansible_facts']['net_fqdn'] }}
+      when: inventory_hostname == 'arista1'

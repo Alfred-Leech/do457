@@ -1,0 +1,6 @@
+- name: testing roles
+  hosts: arista1
+  roles:
+    - role: simple
+      public_param: FINALLY
+    - role: simple

@@ -1,0 +1,42 @@
+# - delegate_to => run task in the machine
+- name: testing boolean filter
+  hosts: iosxe1
+  gather_facts: false
+  vars:
+    doit: false
+    failit: true
+  tasks:
+    - name: collect ios facts
+      ios_facts:
+      when: doit | bool
+      register: t1_result
+
+    - name: save to file
+      copy:
+        content: "{{ t1_result | to_nice_yaml }}"
+        dest: ./filex
+      delegate_to: localhost
+      
+    - name: test fail module
+      fail:
+        msg: Testing
+      when: not (failit | bool)
+
+    - name: run command
+      ios_command:
+        commands: show run
+      failed_when: "'authentication' in cmd_result.stdout"
+      register: cmd_result
+
+    - name: final task
+      vars:
+        search_item: mike
+        name_list:
+          - albert
+          - susan
+          - muniandy
+          - mike
+          - abu
+      debug:
+        msg: item found
+      when: "'mike' in name_list"    # search_item in name_list

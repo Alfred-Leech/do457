@@ -1,0 +1,27 @@
+- name: Testing custom fact
+  hosts: iosxe1
+  tasks:
+    - name: declare value1
+      ansible.builtin.set_fact:
+        value1:
+          one:
+            - name: abc
+              data: Hello World
+            - name: def
+              data: Bye Bye World
+    
+    - name: Using variables
+      vars:
+        search_data: one
+      debug:
+        msg:
+          - The greeting is {{ value1.one[0].data }}    # old name
+          - Another way is {{ value1[search_data][0]['data'] }} # new
+
+    - name: change it
+      ansible.builtin.set_fact:
+        value1: 1
+
+    - name: display value1
+      ansible.builtin.debug:
+        msg: value1 + 5 is {{ value1 + 5 }}

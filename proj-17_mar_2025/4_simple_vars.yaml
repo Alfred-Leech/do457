@@ -1,0 +1,28 @@
+- name: Testing simple variables
+  hosts: localhost
+  gather_facts: false
+  vars:
+    value1: IN PLAY
+  vars_files:
+    - vars/data.yaml
+  tasks:
+    # you can use debug var to display the value of a variable
+    - name: Task 1
+      ansible.builtin.debug:
+        var: value1
+
+    # the variable can be used in the title as well
+    - name: Task 2 you can also use value1 here {{ value1 }}
+      vars:
+        value1: IN TASK
+      ansible.builtin.debug:
+        msg: value1 holds the value of {{ value1 }}
+
+    # when using {{ as the first word in value assignment, the line must be quoted
+    - name: Task 3 - guess what is value1?
+      ansible.builtin.debug:
+        msg: '{{ value1 }} is the value of value1'
+
+    - name: Task 4
+      ansible.builtin.debug:
+        msg: Task 4

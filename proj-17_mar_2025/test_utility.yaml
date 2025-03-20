@@ -1,0 +1,7 @@
+- name: testing hostname
+  hosts: utility
+  tasks:
+    - name: get hostname
+      command: rpm -q asdf
+      failed_when: false
+      changed_when: false

@@ -1,0 +1,15 @@
+- name: testing
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: testing123
+      debug:
+        msg: whatever
+
+    - name: wait for 5 seconds
+      command: sleep 5
+      delegate_to: localhost
+
+    - name: T3
+      debug:
+        msg: final

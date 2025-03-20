@@ -1,0 +1,26 @@
+- name: including external tasks files
+  hosts: iosxe1
+  tasks:
+    - name: import task file
+      import_tasks: tasks/tasks.yaml
+      vars:
+        something: BEFORE
+
+    - name: T1
+      debug:
+        msg: Task 1
+
+    - name: Loop a set of tasks
+      vars:
+        something: "{{ item }}"
+      include_tasks: tasks/tasks.yaml
+      loop:
+        - 123
+        - abc
+        - Hello World
+
+    - name: T3
+      debug:
+        msg: Task 3
+
+- import_playbook: 5_conditions.yaml

@@ -1,0 +1,11 @@
+- name: first playbook
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Get my fact
+      ios_facts:
+      register: whatever
+
+    - debug:
+        var: whatever
+      name: display message

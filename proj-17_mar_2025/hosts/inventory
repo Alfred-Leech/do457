@@ -1,0 +1,16 @@
+monkey
+
+[arista]
+arista[1:2]
+
+[cisco]
+iosxe1      value1="IN INVENTORY"
+iosxe2
+
+[juniper]
+junos[1:2]
+
+[net_devices:children]
+arista
+cisco
+juniper
