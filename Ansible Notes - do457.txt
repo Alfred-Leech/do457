@@ -97,7 +97,7 @@ Command Line Syntax
   ------
     ansible --version|--help
     ansible [-i INVENTORY] [--list-hosts] HOST-PATTERN
-    ansible HOST-PATTERN [-m MODULE] {-a 'ARGS...'} \
+    ansible HOST-PATTERN [-m MODULE] {-a 'ARGS...'} [-e VAR=VALUE] \
       [-i INVENTORY] [-u REMOTE-USER] [-k] [-f FORKS] [-v[v[v[v]]]] \
       [-b] [--become-method su|sudo|enable|runas] [--become-user USER] [-K]
 
