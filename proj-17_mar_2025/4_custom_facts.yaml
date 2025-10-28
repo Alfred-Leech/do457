@@ -18,10 +18,19 @@
           - The greeting is {{ value1.one[0].data }}    # old name
           - Another way is {{ value1[search_data][0]['data'] }} # new
 
-    - name: change it
+    - name: set value1 and message it
       ansible.builtin.set_fact:
         value1: 1
+        message: Hello  World
 
     - name: display value1
       ansible.builtin.debug:
-        msg: value1 + 5 is {{ value1 + 5 }}
+        msg: value1 is {{ value1 }}
+
+    - name: Change value1
+      ansible.builtin.set_fact:
+        value1: "{{ value1 * 6 }}"
+
+    - name: display value1
+      ansible.builtin.debug:
+        msg: value1 is {{ value1 }}
