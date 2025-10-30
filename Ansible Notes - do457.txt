@@ -250,6 +250,8 @@ Playbook Syntax
         vars: VAR_DICTS                   │
         MODULE_NAME: MOD_OPT_DICTS        │
         become: true|false                │
+        async: DURATION                   |  # DURATION in seconds before FAIL
+        poll: DURATION                    |  # DURATION in seconds between polling. Used together with async
         register: VAR_NAME                │
         ignore_errors: true|False         │
         run_once: true|False              │
